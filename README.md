@@ -9,6 +9,37 @@ schedule that satisfies every applicable directive and every GridWise energy rul
 
 ---
 
+## Submission Details
+
+| Item | Value |
+|---|---|
+| Public base URL | `https://gridwise-api-hc7t.onrender.com` |
+| Health | `GET https://gridwise-api-hc7t.onrender.com/health` |
+| Main endpoint | `POST https://gridwise-api-hc7t.onrender.com/optimize-energy` |
+| GitHub repository | https://github.com/Mazharul75/BUP_cse_fest_vortex_coders |
+| LLM provider / model | Google Gemini, `gemini-2.5-flash` via `@google/genai` |
+| Optimizer | `javascript-lp-solver` (linear programming) |
+| Docker fallback image | `mazharul404/gridwise-api:v1.0.0` |
+| Image digest | `sha256:7b2651b69d7572f8db599f81b41923f467a55e981c52f6d91ae357ef78990b4b` |
+| Exposed port | `8000` (binds `0.0.0.0`) |
+| Required env var | `GEMINI_API_KEY` |
+| Optional env vars | `GEMINI_API_KEYS`, `PORT`, `GEMINI_MODEL`, `GEMINI_FALLBACK_MODELS`, `GEMINI_THINKING_BUDGET`, `LLM_TIMEOUT_MS`, `LLM_TOTAL_BUDGET_MS`, `LLM_MAX_ATTEMPTS` |
+
+Fallback run command:
+
+```bash
+docker run -p 8000:8000 -e GEMINI_API_KEY=your_key mazharul404/gridwise-api:v1.0.0
+```
+
+Quick check against the live deployment:
+
+```bash
+curl https://gridwise-api-hc7t.onrender.com/health
+BASE_URL=https://gridwise-api-hc7t.onrender.com npm run test:samples
+```
+
+---
+
 ## 1. Problem
 
 BUP's campus draws electricity from the grid, a rooftop solar array, and a battery,
@@ -216,8 +247,8 @@ BASE_URL=https://your-service.example.com npm run test:samples
 The published fallback image needs no build step:
 
 ```bash
-docker pull <registry>/gridwise-api:<tag>
-docker run --rm -p 8000:8000 -e GEMINI_API_KEY=your_key <registry>/gridwise-api:<tag>
+docker pull mazharul404/gridwise-api:v1.0.0
+docker run --rm -p 8000:8000 -e GEMINI_API_KEY=your_key mazharul404/gridwise-api:v1.0.0
 curl http://localhost:8000/health
 ```
 
