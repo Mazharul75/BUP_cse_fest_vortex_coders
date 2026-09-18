@@ -1,0 +1,11 @@
+services:
+  gridwise:
+    build: .
+    image: gridwise-api:latest
+    ports:
+      - "8000:8000"
+    environment:
+      PORT: 8000
+      GEMINI_API_KEY: ${GEMINI_API_KEY:?GEMINI_API_KEY must be set in the environment}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-2.5-flash}
+    restart: unless-stopped

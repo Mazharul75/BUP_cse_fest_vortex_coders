@@ -1,0 +1,45 @@
+{
+  "name": "gridwise-api",
+  "version": "1.0.0",
+  "description": "GridWise LLM - BUP CSE Fest 2026 preliminary: LLM-assisted smart campus energy optimization API",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "nest build",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:prod": "node dist/main",
+    "test:samples": "node test/run-public-samples.mjs",
+    "test:optimizer": "node test/run-public-samples.mjs --offline",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand",
+    "test:unit": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand test/unit",
+    "test:e2e": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand test/e2e",
+    "test:cov": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand --coverage",
+    "test:llm": "node test/run-llm-interpretation.mjs"
+  },
+  "dependencies": {
+    "@google/genai": "^2.23.0",
+    "@nestjs/common": "^12.0.3",
+    "@nestjs/config": "^12.0.0",
+    "@nestjs/core": "^12.0.3",
+    "@nestjs/platform-express": "^12.0.3",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.2",
+    "javascript-lp-solver": "^1.0.3",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^12.0.3",
+    "@nestjs/testing": "^12.0.3",
+    "@types/express": "^5.0.0",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.0",
+    "@types/supertest": "^6.0.3",
+    "jest": "^30.5.2",
+    "supertest": "^7.2.2",
+    "ts-jest": "^29.4.12",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.0"
+  }
+}
